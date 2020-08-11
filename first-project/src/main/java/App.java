@@ -1,4 +1,7 @@
+import java.io.IOException;
+
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import beans.Client;
@@ -17,18 +20,31 @@ public class App {
 
 	public static void main(String[] args) {
 
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
 		App app = (App) ctx.getBean("app");
 		Event event1 = (Event) ctx.getBean("event");
 		Event event2 = (Event) ctx.getBean("event");
+		
 
 		app.logEvent(event1);
 		app.logEvent(event2);
 		
+		
+		Event event3 = (Event) ctx.getBean("event");
+		app.logEvent(event3);
+		
+		ctx.close();
+			
+		
 	}
 
 	public void logEvent(Event event) {
-		eventLogger.logEvent(event);
+		
+		try {
+			eventLogger.logEvent(event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

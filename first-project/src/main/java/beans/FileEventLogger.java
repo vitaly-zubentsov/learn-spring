@@ -7,22 +7,19 @@ import org.apache.commons.io.FileUtils;
 
 public class FileEventLogger implements EventLogger {
 	String fileName;
-	Event event;
+	File file;
 
 	public FileEventLogger(String fileName){
 		this.fileName = fileName;
 	}
 
-	public void logEvent(Event event) {
-		File file = new File(fileName);
-		try {
-			FileUtils.writeStringToFile(file, event.toString(), true);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public void init() throws IOException {
+		file = new File(fileName);
+		file.canWrite();
 	}
-
-
+	
+	public void logEvent(Event event) throws IOException {
+		FileUtils.writeStringToFile(file, event.toString(), true);
+		}
 
 }
