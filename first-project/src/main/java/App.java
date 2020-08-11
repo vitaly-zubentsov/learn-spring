@@ -2,17 +2,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import beans.Client;
-import beans.ConsoleEventLogger;
 import beans.Event;
+import beans.EventLogger;
 
 public class App {
 
 	Client client;
-	ConsoleEventLogger consoleEventLogger;
+	EventLogger eventLogger;
 
-	App (Client client, ConsoleEventLogger consoleEventLogger) {
+	App (Client client, EventLogger eventLogger) {
 		this.client = client;
-		this.consoleEventLogger = consoleEventLogger;
+		this.eventLogger = eventLogger;
 	}
 
 	public static void main(String[] args) {
@@ -25,9 +25,10 @@ public class App {
 
 		app.logEvent(event1);
 		app.logEvent(event2);
+		
 	}
 
 	public void logEvent(Event event) {
-		consoleEventLogger.logEvent(event);
+		eventLogger.logEvent(event);
 	}
 }

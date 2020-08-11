@@ -42,3 +42,6 @@ hs_err_pid*
 .classpath
 .project
 /.metadata/
+
+#logs ignore
+logs/

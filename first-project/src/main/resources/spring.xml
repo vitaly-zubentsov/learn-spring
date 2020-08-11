@@ -9,7 +9,11 @@
 		<constructor-arg index="0" value="1"/>
     	<constructor-arg index="1" value="J. Smith"/>
 	</bean>
-	<bean id="eventLogger" class="beans.ConsoleEventLogger" />
+	<bean id="consoleEventLogger" class="beans.ConsoleEventLogger" />
+	<bean id="fileEventLogger" class="beans.FileEventLogger" >
+		<constructor-arg  value="logs\log.txt"/>
+	</bean>
+		
 	<bean id="dateFomat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 	<bean id="event" class="beans.Event" scope="prototype">
 		<constructor-arg>
@@ -17,9 +21,10 @@
     	</constructor-arg>	
     	<constructor-arg ref="dateFomat"/>
     </bean>
+            
 	<bean id="app" class="App">
 		<constructor-arg ref="client"/>
-		<constructor-arg ref="eventLogger"/>
+		<constructor-arg ref="fileEventLogger"/>
 	</bean>
 
 
