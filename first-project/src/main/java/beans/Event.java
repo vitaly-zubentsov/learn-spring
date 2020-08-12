@@ -11,7 +11,7 @@ public class Event {
 	private Date date;
 	private DateFormat df;
 	
-	Event(Date date, DateFormat df ) {
+	Event(Date date, DateFormat df) {
 		this.date = date;
 		this.df = df;
 		Random random = new Random();

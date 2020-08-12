@@ -15,6 +15,12 @@
 	<bean id="app" class="App">
 		<constructor-arg ref="client"/>
 		<constructor-arg ref="cashFileEventLogger"/>
+		<constructor-arg>
+			<map>
+				<entry key="INFO" value-ref="consoleEventLogger"/>
+				<entry key="ERROR" value-ref="fileEventLogger"/>
+			</map>
+		</constructor-arg>
 	</bean>
 
 

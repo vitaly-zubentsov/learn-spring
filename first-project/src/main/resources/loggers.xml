@@ -20,4 +20,14 @@
     	</constructor-arg>	
     	<constructor-arg ref="dateFomat"/>
     </bean>
+    	<bean id="combinedEventLogger" class="beans.CombinedEventLogger" depends-on="consoleEventLogger,fileEventLogger">
+		<constructor-arg>
+    		<list>
+    			<ref bean="consoleEventLogger"/>
+    			<ref bean="fileEventLogger"/>
+    		</list>
+    	</constructor-arg>	
+    </bean>
+    
+    
 </beans>
