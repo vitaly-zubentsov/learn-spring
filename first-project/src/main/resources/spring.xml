@@ -4,29 +4,13 @@
 	xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+ 		
+ 	<import resource="loggers.xml"/>
 
 	<bean id="client" class="beans.Client">
 		<constructor-arg index="0" value="1"/>
     	<constructor-arg index="1" value="J. Smith"/>
 	</bean>
-	<bean id="consoleEventLogger" class="beans.ConsoleEventLogger" />
-	<bean id="fileEventLogger" class="beans.FileEventLogger" init-method="init" >
-		<constructor-arg  value="logs\log.txt"/>
-	</bean>
-		
-	<bean id="cashFileEventLogger" class="beans.CashFileEventLogger" init-method="init" destroy-method ="destroy" >
-		<constructor-arg  value="logs\log.txt"/>
-		<constructor-arg  value="2"/>
-	</bean>
-		
-	<bean id="dateFomat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-	<bean id="event" class="beans.Event" scope="prototype">
-		<constructor-arg>
-    		<bean class="java.util.Date"/>
-    	</constructor-arg>	
-    	<constructor-arg ref="dateFomat"/>
-    </bean>
-            
 	<bean id="app" class="App">
 		<constructor-arg ref="client"/>
 		<constructor-arg ref="cashFileEventLogger"/>
