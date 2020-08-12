@@ -10,6 +10,7 @@
 	<bean id="client" class="beans.Client">
 		<constructor-arg index="0" value="1"/>
     	<constructor-arg index="1" value="J. Smith"/>
+    	<property name = "greeting" value="Hello there!" />
 	</bean>
 	<bean id="app" class="App">
 		<constructor-arg ref="client"/>

@@ -5,6 +5,7 @@ public class Client {
 
     String id;
     String name;
+    String greeting;
 
     Client(String id, String name) {
         this.id = id;
@@ -27,4 +28,14 @@ public class Client {
     public void setName(String name) {
         this.name = name;
     }
+
+
+	public String getGreeting() {
+		return greeting;
+	}
+
+
+	public void setGreeting(String greeting) {
+		this.greeting = greeting;
+	}
 }
