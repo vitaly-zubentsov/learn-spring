@@ -10,8 +10,9 @@ public class Event {
 	private String msg;
 	private Date date;
 	private DateFormat df;
-	
-	Event(Date date, DateFormat df) {
+
+	Event(String msg,Date date, DateFormat df) {
+		this.msg = msg;
 		this.date = date;
 		this.df = df;
 		Random random = new Random();
@@ -30,7 +31,7 @@ public class Event {
 	public String toString() {
 		return "Event [id=" + id + ", msg=" + msg + ", date=" + df.format(date) + "]\n";
 	}
-	
-	
-	
+
+
+
 }

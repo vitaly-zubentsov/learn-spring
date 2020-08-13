@@ -17,8 +17,9 @@
 	<bean id="event" class="beans.Event" scope="prototype">
 		<constructor-arg>
     		<bean class="java.util.Date"/>
-    	</constructor-arg>	
-    	<constructor-arg ref="dateFomat"/>
+    	</constructor-arg>
+    	<constructor-arg name="msg" value="Some text"/>	
+    	<constructor-arg ref="dateFomat"/>	
     </bean>
     	<bean id="combinedEventLogger" class="beans.CombinedEventLogger" depends-on="consoleEventLogger,fileEventLogger">
 		<constructor-arg>
