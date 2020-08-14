@@ -11,8 +11,8 @@ public class CashFileEventLogger extends FileEventLogger{
 	int cashSize;
 	List<Event> cash = new ArrayList<>(); 
 
-	CashFileEventLogger(String fileNameString,int cashSize) {
-		super(fileNameString);
+	CashFileEventLogger(String fileName,int cashSize) {
+		super(fileName);
 		this.cashSize = cashSize;
 	}
 

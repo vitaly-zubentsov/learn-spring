@@ -54,10 +54,10 @@ public class App {
 				eventLogger.logEvent(event); //Если тип лога не определён то используем cashFileLogger
 			} else {
 			switch(eventType) {
-			case INFO: //info выводим только в консоль
+			case INFO: //Если тип лога info выводим только в консоль
 				loggers.get(eventType).logEvent(event);
 				break;
-			case ERROR: //ошибки выводим и в консоль и в файл
+			case ERROR: //Если тип лога error выводим и в консоль и в файл
 				loggers.get(eventType).logEvent(event);
 				loggers.get(EventType.INFO).logEvent(event);
 				break;
