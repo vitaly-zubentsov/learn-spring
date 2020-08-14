@@ -1,13 +1,21 @@
 package beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component("client")
 public class Client {
 
+	
     String id;
     String name;
+    @Autowired
+    @Value("${greeting}")
     String greeting;
 
-    Client(String id, String name) {
+    @Autowired
+    Client(@Value("${id}") String id,@Value("${name}") String name) {
         this.id = id;
         this.name = name;
     }

@@ -4,14 +4,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
+import javax.annotation.PreDestroy;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component("cashFileEventLogger")
 public class CashFileEventLogger extends FileEventLogger{
 
 	int cashSize;
 	List<Event> cash = new ArrayList<>(); 
 
-	CashFileEventLogger(String fileName,int cashSize) {
+	@Autowired
+	CashFileEventLogger(@Value("logs\\log.txt") String fileName, @Value("2")int cashSize) {
 		super(fileName);
 		this.cashSize = cashSize;
 	}
@@ -32,6 +39,7 @@ public class CashFileEventLogger extends FileEventLogger{
 		}
 	}
 	
+	@PreDestroy
 	public void destroy() throws IOException {
 		if(!cash.isEmpty()) {
 			writeEventsFromCach();

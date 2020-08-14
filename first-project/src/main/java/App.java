@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,17 +15,18 @@ import beans.EventLogger;
 import beans.EventType;
 
 public class App {
-
+	@Autowired
 	Client client;
 	EventLogger eventLogger;
 	Map<EventType,EventLogger> loggers;
 
-	App (Client client, EventLogger eventLogger, Map<EventType,EventLogger> loggers) {
+	@Autowired
+	App (Client client, @Qualifier("cashFileEventLogger") EventLogger eventLogger, @Qualifier("loggerMap") Map<EventType,EventLogger> loggers) {
 		this.client = client; 
 		this.eventLogger = eventLogger;
 		this.loggers = loggers;
 	}
-
+	
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -41,12 +46,14 @@ public class App {
 
 		Event event4 = (Event) ctx.getBean("event");
 		app.logEvent(event4, null);
+		event4.setMsg("4");
 		
 		ctx.close();
 
 
 	}
 
+	
 	public void logEvent(Event event, EventType eventType) {
 
 		try {
@@ -59,7 +66,6 @@ public class App {
 				break;
 			case ERROR: //Если тип лога error выводим и в консоль и в файл
 				loggers.get(eventType).logEvent(event);
-				loggers.get(EventType.INFO).logEvent(event);
 				break;
 			}
 			}

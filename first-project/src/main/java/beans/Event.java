@@ -4,6 +4,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
 public class Event {
 
 	private int id;
@@ -11,7 +17,8 @@ public class Event {
 	private Date date;
 	private DateFormat df;
 
-	Event(String msg,Date date, DateFormat df) {
+	@Autowired
+	Event(@Value("Some text") String msg,Date date,@Qualifier("dateFomat") DateFormat df) {
 		this.msg = msg;
 		this.date = date;
 		this.df = df;
@@ -31,7 +38,6 @@ public class Event {
 	public String toString() {
 		return "Event [id=" + id + ", msg=" + msg + ", date=" + df.format(date) + "]\n";
 	}
-
 
 
 }

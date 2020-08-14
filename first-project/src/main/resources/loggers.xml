@@ -8,24 +8,6 @@
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
 	<bean 
-		id="consoleEventLogger" 
-		class="beans.ConsoleEventLogger" />
-	
-	<bean 
-		id="fileEventLogger" 
-		class="beans.FileEventLogger" 
-		init-method="init"   
-		c:fileName="logs\log.txt"/>
-
-	<bean 
-		id="cashFileEventLogger"
-		class="beans.CashFileEventLogger" 
-		init-method="init" 
-		destroy-method ="destroy"
-		c:fileName="logs\log.txt"
-		c:cashSize="2"/>
-	
-	<bean 
 		id="dateFomat" 
 		class="java.text.DateFormat" 
 		factory-method="getDateTimeInstance"/>
@@ -33,9 +15,7 @@
 	<bean 
 		id="event"
 		class="beans.Event"
-		scope="prototype"
-		c:msg="Some text"
-		c:df-ref="dateFomat">
+		scope="prototype">
 		<constructor-arg name="date">
     		<bean class="java.util.Date"/>
     	</constructor-arg>
@@ -50,6 +30,5 @@
     		</list>
     	</constructor-arg>	
     </bean>
-    
-    
+        
 </beans>
