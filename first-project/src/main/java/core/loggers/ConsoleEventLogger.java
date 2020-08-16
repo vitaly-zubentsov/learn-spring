@@ -1,8 +1,10 @@
-package beans;
+package  core.loggers;
 
 import org.springframework.stereotype.Component;
 
-@Component("consoleEventLogger")
+import core.beans.Event;
+
+@Component
 public class ConsoleEventLogger implements EventLogger {
 
     public void logEvent(Event event) {
